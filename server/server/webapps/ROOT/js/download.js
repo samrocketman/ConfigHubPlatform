@@ -1,1 +1,0 @@
-angular.module("configHub.download",[]).controller("DownloadCtrl",["$http","$scope","$filter","store",function(d,b,c,a){}]);
