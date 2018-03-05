@@ -1,0 +1,25 @@
+/*C1*/SET SCHEMA SYSTEM_LOBS
+INSERT INTO BLOCKS VALUES(0,2147483647,0)
+COMMIT
+/*C2*/SET SCHEMA PUBLIC
+create table AccessRule_Level (AccessRule_id bigint not null, context_id bigint not null, primary key (AccessRule_id, context_id))
+create table Account_Repository (Account_id bigint not null, repositories_id bigint not null, primary key (Account_id, repositories_id))
+create table Level_Level (groups_id bigint not null, members_id bigint not null, primary key (groups_id, members_id))
+create table Level_Level_Audit (REV bigint not null, groups_id bigint not null, members_id bigint not null, REVTYPE tinyint, REVEND bigint, REVEND_TSTMP timestamp, primary key (REV, groups_id, members_id))
+create table Organization_Admins (Organization_id bigint not null, administrators_id bigint not null, primary key (Organization_id, administrators_id))
+create table Organization_Owners (Organization_id bigint not null, owners_id bigint not null, primary key (Organization_id, owners_id))
+create table Property_Level (properties_id bigint not null, context_id bigint not null, primary key (properties_id, context_id))
+create table Property_Level_Audit (REV bigint not null, properties_id bigint not null, context_id bigint not null, REVTYPE tinyint, REVEND bigint, REVEND_TSTMP timestamp, primary key (REV, properties_id, context_id))
+create table RepoFile_Level (files_id bigint not null, context_id bigint not null, primary key (files_id, context_id))
+create table RepoFile_Level_Audit (REV bigint not null, files_id bigint not null, context_id bigint not null, REVTYPE tinyint, REVEND bigint, REVEND_TSTMP timestamp, primary key (REV, files_id, context_id))
+create table RepoFile_PropertyKey (files_id bigint not null, keys_id bigint not null, primary key (files_id, keys_id))
+create table RepoFile_PropertyKey_Audit (REV bigint not null, files_id bigint not null, keys_id bigint not null, REVTYPE tinyint, REVEND bigint, REVEND_TSTMP timestamp, primary key (REV, files_id, keys_id))
+create table Repository_Team (Repository_id bigint not null, teams_id bigint not null, primary key (Repository_id, teams_id))
+create table Team_UserAccount (Team_id bigint not null, members_id bigint not null, primary key (Team_id, members_id))
+create table Team_UserAccount_Audit (REV bigint not null, Team_id bigint not null, members_id bigint not null, REVTYPE tinyint, REVEND bigint, REVEND_TSTMP timestamp, primary key (REV, Team_id, members_id))
+create table Token_SecurityProfile (tokens_id bigint not null, securityProfiles_id bigint not null, primary key (tokens_id, securityProfiles_id))
+create table Token_SecurityProfile_Audit (REV bigint not null, tokens_id bigint not null, securityProfiles_id bigint not null, REVTYPE tinyint, REVEND bigint, REVEND_TSTMP timestamp, primary key (REV, tokens_id, securityProfiles_id))
+create table UserAccount_Organization (UserAccount_id bigint not null, organizations_id bigint not null, primary key (UserAccount_id, organizations_id))
+alter table Repository_Team add constraint UK_1g5n6iqg5dn1hxdd1qc9xq9ht unique (teams_id)
+create sequence hibernate_sequence start with 1 increment by 1
+DISCONNECT
